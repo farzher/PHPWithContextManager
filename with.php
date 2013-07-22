@@ -31,7 +31,7 @@ function with() {
 			// If the enter method returns something
 			// pass that value into the callback, instead of the object.
 			if(isset($return)) {
-				$callback_args[$index] = $return;
+				$callback_arg = $return;
 			}
 		}
 
