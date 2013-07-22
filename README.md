@@ -13,49 +13,50 @@ Download [with.php](https://raw.github.com/farzher/PHPWithContentManager/master/
 
 #Usage
 
-	#!/usr/bin/env php
-	<?php
+```php
+#!/usr/bin/env php
+<?php
 
-	require('with.php');
+require('with.php');
 
-	class A {
-		public function _enter() {
-			echo "A is setting up stuff.\n";
-		}
-
-		public function _exit($exception) {
-			echo "A is cleaning up stuff.\n";
-			if(!empty($exception)) {
-				echo "I've handled the exception\n";
-				// Return true to say you've handled the exception.
-				// This will catch the exception.
-				return true;
-			}
-		}
+class A {
+	public function _enter() {
+		echo "A is setting up stuff.\n";
 	}
 
-	class B {
-		public function _enter() {
-			echo "B is setting up stuff.\n";
-			// Return a value to pass it to the closure instead.
-			return 1;
-		}
-
-		public function _exit($exception) {
-			echo "B is cleaning up stuff.\n";
+	public function _exit($exception) {
+		echo "A is cleaning up stuff.\n";
+		if(!empty($exception)) {
+			echo "I've handled the exception\n";
+			// Return true to say you've handled the exception.
+			// This will catch the exception.
+			return true;
 		}
 	}
+}
 
-	with(new A, new B, function($a, $b) {
-		// $a is an object, $b is the number 1
-		var_dump($a, $b);
-		throw new Exception('Something went wrong.');
-		echo "This should not be seen because of exception.\n";
-	});
+class B {
+	public function _enter() {
+		echo "B is setting up stuff.\n";
+		// Return a value to pass it to the closure instead.
+		return 1;
+	}
 
-	// We get here because class A handles the exception.
-	echo "After with.\n";
+	public function _exit($exception) {
+		echo "B is cleaning up stuff.\n";
+	}
+}
 
+with(new A, new B, function($a, $b) {
+	// $a is an object, $b is the number 1
+	var_dump($a, $b);
+	throw new Exception('Something went wrong.');
+	echo "This should not be seen because of exception.\n";
+});
+
+// We get here because class A handles the exception.
+echo "After with.\n";
+```
 
 Output:
 
