@@ -59,6 +59,7 @@ function with() {
 	$exception_handled = false;
 
 	foreach ($objects as $object) {
+		// If the object has an _exit method, call it
 		if(method_exists($object, '_exit')) {
 			// Pass the exception to the exit method
 			$return = $object->_exit($exception);
@@ -66,6 +67,7 @@ function with() {
 				$exception_handled = true;
 			}
 		} else {
+			// If the object was a resource, close it
 			if(is_resource($object)) {
 				fclose($object);
 			}
