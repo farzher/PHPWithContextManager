@@ -5,6 +5,12 @@ Python-like context manager for PHP
 
 
 
+#Why?
+
+If you don't know what this is all about, checkout `Python Context Managers`. This just tries to mimic them.
+
+
+
 #Installation
 
 Download [with.php](https://raw.github.com/farzher/PHPWithContentManager/master/with.php) and `require` it.
@@ -12,6 +18,8 @@ Download [with.php](https://raw.github.com/farzher/PHPWithContentManager/master/
 
 
 #Usage
+
+### Custom Context Managers
 
 ```php
 #!/usr/bin/env php
@@ -71,8 +79,13 @@ Output:
 	After with.
 
 
+
+### Resources
+
 If used with resources, they'll be closed when you're done, even if an exception was thrown.
 
-	with(fopen('data.txt', 'r'), function($handle) {
-		$data = fread($handle, 10);
-	});
+```php
+with(fopen('data.txt', 'r'), function($handle) {
+	$data = fread($handle, 10);
+});
+```
