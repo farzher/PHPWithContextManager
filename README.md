@@ -1,4 +1,4 @@
-PHPWithContentManager
+PHPWithContextManager
 =====================
 
 Python-like context manager for PHP
@@ -13,7 +13,7 @@ If you don't know what this is all about, checkout `Python Context Managers`. Th
 
 #Installation
 
-Download [with.php](https://raw.github.com/farzher/PHPWithContentManager/master/with.php) and `require` it.
+Download [with.php](https://raw.github.com/farzher/PHPWithContextManager/master/with.php) and `require` it.
 
 
 
